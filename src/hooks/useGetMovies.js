@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 const useGetMovies = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 12;
 
     const [{ data = [], loading, error }, trigger] = useRequest({
         url: '/',
@@ -22,9 +24,21 @@ const useGetMovies = () => {
         ? sortMovies(data.filter(movie => movie.Title.toLowerCase().includes(searchTerm.toLowerCase())))
         : sortMovies([...data]);
 
+    const getPaginatedData = () => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return filteredMovies.slice(startIndex, endIndex);
+    };
+
+    const paginatedMovies = getPaginatedData();
+
     const handleSortChange = (event) => {
         setSortOrder(event.target.value);
     };
+
+    const onPageChange = (page) => {
+        setCurrentPage(page);
+    }
 
     useEffect(() => {
         trigger();
@@ -38,6 +52,12 @@ const useGetMovies = () => {
         setSearchTerm,
         searchTerm,
         handleSortChange,
+        paginatedMovies,
+        currentPage,
+        setCurrentPage,
+        onPageChange,
+        totalPages: Math.ceil(filteredMovies.length / itemsPerPage)
+
     }
 }
 

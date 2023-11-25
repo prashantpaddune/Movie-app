@@ -3,9 +3,21 @@ import {Container, Heading, SearchInput, Wrapper, Header, SortSelect, FilterCont
 import useGetMovies from "@/hooks/useGetMovies";
 import Loader from "@/common/Loader";
 import NoDataFound from "@/common/NoDataFound";
+import Pagination from "@/common/Pagination";
 
 const MovieList = () => {
-    const { filteredMovies = [], loading, setSearchTerm, searchTerm, handleSortChange } = useGetMovies();
+    const {
+        filteredMovies = [],
+        loading = false,
+        setSearchTerm = () => {},
+        searchTerm = '',
+        handleSortChange = () => {},
+        setCurrentPage = () => {},
+        currentPage = 1,
+        totalPages = 1,
+        paginatedMovies = [],
+        onPageChange = () => {}
+    } = useGetMovies();
 
     const renderItem = () => {
         if (filteredMovies.length === 0) {
@@ -14,7 +26,7 @@ const MovieList = () => {
 
         return (
             <Container>
-                {filteredMovies.map((movie, index) => (
+                {paginatedMovies.map((movie, index) => (
                     <MovieCard key={index} movie={movie}/>
                 ))}
             </Container>
@@ -38,7 +50,10 @@ const MovieList = () => {
                         type="text"
                         placeholder="Search movies..."
                         value={searchTerm}
-                        onChange={e => setSearchTerm(e.target.value)}
+                        onChange={e => {
+                            setSearchTerm(e.target.value)
+                            setCurrentPage(1)
+                        }}
                     />
                     <SortSelect onChange={handleSortChange}>
                         <option value="asc">Date Asc</option>
@@ -47,6 +62,13 @@ const MovieList = () => {
                 </FilterContainer>
             </Header>
             {renderItem()}
+            {filteredMovies.length > 0 && (
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={onPageChange}
+                />
+            )}
         </>
 
     );

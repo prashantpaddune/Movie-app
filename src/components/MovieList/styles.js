@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 const SearchInput = styled.input`
   width: 50%;
   padding: 10px 15px;
-  margin: 15px 0;
+  margin: 15px 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -26,7 +26,6 @@ const SearchInput = styled.input`
 `;
 
 const Heading = styled.h1`
-  color: #333;
   text-align: center;
   margin-top: 20px;
 `;
@@ -37,10 +36,28 @@ const Header = styled.div`
     align-items: center;
     justify-content: center;
 `;
+
+const SortSelect = styled.select`
+  padding: 10px 15px;
+  margin: 15px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 16px;
+`;
+
+const FilterContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+`;
+
 export {
     Container,
     Wrapper,
     SearchInput,
     Heading,
-    Header
+    Header,
+    SortSelect,
+    FilterContainer
 }

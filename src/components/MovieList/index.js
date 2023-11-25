@@ -1,11 +1,11 @@
 import MovieCard from './MovieCard';
-import {Container, Heading, SearchInput, Wrapper, Header} from "@/components/MovieList/styles";
+import {Container, Heading, SearchInput, Wrapper, Header, SortSelect, FilterContainer} from "@/components/MovieList/styles";
 import useGetMovies from "@/hooks/useGetMovies";
 import Loader from "@/common/Loader";
 import NoDataFound from "@/common/NoDataFound";
 
 const MovieList = () => {
-    const { filteredMovies = [], loading, setSearchTerm, searchTerm } = useGetMovies();
+    const { filteredMovies = [], loading, setSearchTerm, searchTerm, handleSortChange } = useGetMovies();
 
     const renderItem = () => {
         if (filteredMovies.length === 0) {
@@ -33,12 +33,18 @@ const MovieList = () => {
         <>
             <Header>
                 <Heading>Explore Movies</Heading>
-                <SearchInput
-                    type="text"
-                    placeholder="Search movies..."
-                    value={searchTerm}
-                    onChange={e => setSearchTerm(e.target.value)}
-                />
+                <FilterContainer>
+                    <SearchInput
+                        type="text"
+                        placeholder="Search movies..."
+                        value={searchTerm}
+                        onChange={e => setSearchTerm(e.target.value)}
+                    />
+                    <SortSelect onChange={handleSortChange}>
+                        <option value="asc">Date Asc</option>
+                        <option value="desc">Date Des</option>
+                    </SortSelect>
+                </FilterContainer>
             </Header>
             {renderItem()}
         </>

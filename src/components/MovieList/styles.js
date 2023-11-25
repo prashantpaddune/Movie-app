@@ -30,7 +30,32 @@ const Wrapper = styled.div`
   min-height: 100vh;
 `;
 
+const SearchInput = styled.input`
+  width: 50%;
+  padding: 10px 15px;
+  margin: 15px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 16px;
+`;
+
+const Heading = styled.h1`
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+`;
+
+const Header = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
 export {
     Container,
-    Wrapper
+    Wrapper,
+    SearchInput,
+    Heading,
+    Header
 }

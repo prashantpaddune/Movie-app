@@ -6,6 +6,7 @@ const Container = styled.div`
   grid-gap: 20px;
   padding: 20px;
 `;
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;

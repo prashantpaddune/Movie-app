@@ -5,7 +5,7 @@ const Loader = (props) => {
         <Container {...props}>
             <div className="spinner"/>
         </Container>
-    )
+    );
 }
 
 export default Loader;

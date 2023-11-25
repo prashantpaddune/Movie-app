@@ -1,5 +1,5 @@
-import {useRequest} from "@/hooks/useRequest";
-import {useEffect, useState} from "react";
+import { useRequest } from "@/hooks/useRequest";
+import { useEffect, useState } from "react";
 
 const useGetMovies = () => {
     const [searchTerm, setSearchTerm] = useState('');

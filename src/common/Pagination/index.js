@@ -1,4 +1,4 @@
-import {PageButton, PaginationContainer} from "@/common/Pagination/styles";
+import {PageButton, PaginationContainer, PageInfo} from "@/common/Pagination/styles";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => (
     <PaginationContainer>
@@ -8,7 +8,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => (
         >
             Previous
         </PageButton>
-        <span>Page {currentPage} of {totalPages}</span>
+        <PageInfo>Page {currentPage} of {totalPages}</PageInfo>
         <PageButton
             onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
